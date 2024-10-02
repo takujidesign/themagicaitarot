@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarot Card Randomizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 50px;
+        }
+        #tarot-card {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+        button img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        img {
+            width: 200px;
+            height: auto;
+            margin-top: 20px;
+        }
+        #shuffling-gif {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>The Magic Tarot </h1>
+    <p>Click for predict your horoscope. คลิกเพื่อทำนาย</p>
+    
+    <!-- ปุ่มสุ่มไพ่มีรูปภาพ -->
+    <button id="draw-btn" onclick="drawCard()">
+        <img src="images/card_back.jpg" alt="Card Back"> Draw a Card
+    </button>
+    
+    <!-- ภาพ GIF สำหรับการสับไพ่ -->
+    <img id="shuffling-gif" src="images/shuffling.gif" alt="Shuffling Cards">
+
+    <div id="tarot-card"></div>
+
+    <script>
+        const tarotDeck = [
+            { name: 'The Fool', img: 'images/fool.jpg' },
+            { name: 'The Magician', img: 'images/magician.jpg' },
+            { name: 'The High Priestess', img: 'images/high_priestess.jpg' },
+            { name: 'The Empress', img: 'images/empress.jpg' },
+            { name: 'The Emperor', img: 'images/emperor.jpg' },
+            { name: 'The Emperor', img: 'images/hierophant.jpg' },
+            { name: 'The Emperor', img: 'images/lovers.jpg' },
+            { name: 'The Emperor', img: 'images/chariot.jpg' },
+            { name: 'The Emperor', img: 'images/strength.jpg' },
+            { name: 'The Emperor', img: 'images/hermit.jpg' },
+            { name: 'The Emperor', img: 'images/wheel_of_fortune.jpg' },
+            { name: 'The Emperor', img: 'images/justice.jpg' },
+            { name: 'The Emperor', img: 'images/hanged_man.jpg' },
+            { name: 'The Emperor', img: 'images/death.jpg' },
+            { name: 'The Emperor', img: 'images/temperance.jpg' },
+            { name: 'The Emperor', img: 'images/devil.jpg' },
+            { name: 'The Emperor', img: 'images/tower.jpg' },
+            { name: 'The Emperor', img: 'images/star.jpg' },
+            { name: 'The Emperor', img: 'images/moon.jpg' },
+            { name: 'The Emperor', img: 'images/sun.jpg' },
+            { name: 'The Emperor', img: 'images/judgement.jpg' },
+            { name: 'The Emperor', img: 'images/world.jpg' },
+        ];
+
+        function drawCard() {
+            const randomIndex = Math.floor(Math.random() * tarotDeck.length);
+            const card = tarotDeck[randomIndex];
+
+            // แสดงรูปไพ่ปิดที่ปุ่มก่อนกด
+            const drawButton = document.getElementById('draw-btn');
+            const shufflingGif = document.getElementById('shuffling-gif');
+            drawButton.innerHTML = 'Shuffling...';
+            drawButton.disabled = true;
+            
+            // แสดง GIF การสับไพ่
+            shufflingGif.style.display = 'block';
+
+            // ตั้งเวลาแสดงไพ่ (เช่น 2 วินาทีหลังจากกดปุ่ม)
+            setTimeout(function() {
+                // ซ่อน GIF หลังจากการสับเสร็จ
+                shufflingGif.style.display = 'none';
+
+                // แสดงผลไพ่ที่สุ่มได้ พร้อมรูปภาพ
+                document.getElementById('tarot-card').innerHTML = `
+                    <p>You drew: ${card.name}</p>
+                    <img src="${card.img}" alt="${card.name}">
+                `;
+
+                // รีเซ็ตปุ่มกลับไปเป็นปกติ
+                drawButton.innerHTML = `<img src="images/card_back.jpg" alt="Card Back"> Draw a Card`;
+                drawButton.disabled = false;
+            }, 2000); // ตั้งเวลาให้รอ 2 วินาทีเพื่อจำลองการ "Shuffle"
+        }
+    </script>
+</body>
+</html>
