@@ -5,11 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarot Card Randomizer</title>
     <style>
+        /* จัดให้ทั้งหน้าจออยู่ตรงกลาง */
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* ใช้ความสูงเต็มหน้าจอ */
             background-color: #f0f0f0;
-            padding: 50px;
+            margin: 0; /* เอาขอบเขตของ body ออก */
+        }
+        /* กล่องเนื้อหา */
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         #tarot-card {
             font-size: 1.5em;
@@ -18,7 +30,7 @@
         button {
             padding: 10px 20px;
             font-size: 1.2em;
-            background-color: #4CAF50;
+            background-color: #DAA520;
             color: white;
             border: none;
             cursor: pointer;
@@ -27,8 +39,8 @@
             align-items: center;
         }
         button img {
-            width: 30px;
-            height: 30px;
+            width: 190px;
+            height: 315px;
             margin-right: 10px;
         }
         button:hover {
@@ -46,18 +58,22 @@
     </style>
 </head>
 <body>
-    <h1>The Magic Tarot </h1>
-    <p>Click for predict your horoscope. คลิกเพื่อทำนาย</p>
-    
-    <!-- ปุ่มสุ่มไพ่มีรูปภาพ -->
-    <button id="draw-btn" onclick="drawCard()">
-        <img src="images/card_back.jpg" alt="Card Back"> Draw a Card
-    </button>
-    
-    <!-- ภาพ GIF สำหรับการสับไพ่ -->
-    <img id="shuffling-gif" src="images/shuffling.gif" alt="Shuffling Cards">
 
-    <div id="tarot-card"></div>
+    <!-- กล่องเนื้อหาสำหรับสุ่มไพ่ -->
+    <div class="container">
+        <h1>Tarot Card Randomizer</h1>
+        <p>Click the button to draw a random Tarot card.</p>
+        
+        <!-- ปุ่มสุ่มไพ่มีรูปภาพ -->
+        <button id="draw-btn" onclick="drawCard()">
+            <img src="images/card_back.jpg" alt="Card Back"> Draw a Card
+        </button>
+        
+        <!-- ภาพ GIF สำหรับการสับไพ่ -->
+        <img id="shuffling-gif" src="images/shuffling.gif" alt="Shuffling Cards">
+
+        <div id="tarot-card"></div>
+    </div>
 
     <script>
         const tarotDeck = [
@@ -66,23 +82,23 @@
             { name: 'The High Priestess', img: 'images/high_priestess.jpg' },
             { name: 'The Empress', img: 'images/empress.jpg' },
             { name: 'The Emperor', img: 'images/emperor.jpg' },
-            { name: 'The Emperor', img: 'images/hierophant.jpg' },
-            { name: 'The Emperor', img: 'images/lovers.jpg' },
-            { name: 'The Emperor', img: 'images/chariot.jpg' },
-            { name: 'The Emperor', img: 'images/strength.jpg' },
-            { name: 'The Emperor', img: 'images/hermit.jpg' },
-            { name: 'The Emperor', img: 'images/wheel_of_fortune.jpg' },
-            { name: 'The Emperor', img: 'images/justice.jpg' },
-            { name: 'The Emperor', img: 'images/hanged_man.jpg' },
-            { name: 'The Emperor', img: 'images/death.jpg' },
-            { name: 'The Emperor', img: 'images/temperance.jpg' },
-            { name: 'The Emperor', img: 'images/devil.jpg' },
-            { name: 'The Emperor', img: 'images/tower.jpg' },
-            { name: 'The Emperor', img: 'images/star.jpg' },
-            { name: 'The Emperor', img: 'images/moon.jpg' },
-            { name: 'The Emperor', img: 'images/sun.jpg' },
-            { name: 'The Emperor', img: 'images/judgement.jpg' },
-            { name: 'The Emperor', img: 'images/world.jpg' },
+            { name: 'The Hierophanะ', img: 'images/hierophant.jpg' },
+            { name: 'The Lovers', img: 'images/lovers.jpg' },
+            { name: 'The Chariot', img: 'images/chariot.jpg' },
+            { name: 'Strength', img: 'images/strength.jpg' },
+            { name: 'The Hermit', img: 'images/hermit.jpg' },
+            { name: 'Wheel of fortune', img: 'images/wheel_of_fortune.jpg' },
+            { name: 'Justice', img: 'images/justice.jpg' },
+            { name: 'The Hanged Man', img: 'images/hanged_man.jpg' },
+            { name: 'Death', img: 'images/death.jpg' },
+            { name: 'Temperance', img: 'images/temperance.jpg' },
+            { name: 'The Devil', img: 'images/devil.jpg' },
+            { name: 'The Tower', img: 'images/tower.jpg' },
+            { name: 'The Star', img: 'images/star.jpg' },
+            { name: 'The Moon', img: 'images/moon.jpg' },
+            { name: 'The Sun', img: 'images/sun.jpg' },
+            { name: 'Judgement', img: 'images/judgement.jpg' },
+            { name: 'The World', img: 'images/world.jpg' },
         ];
 
         function drawCard() {
