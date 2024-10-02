@@ -49,7 +49,7 @@
         button {
             padding: 15px;
             font-size: 1.2em;
-            background-color: #DAA520; /* สีทอง */
+            background-color: #6A5ACD; /* สีเข้ากับพื้นหลัง */
             color: white;
             border: 2px solid #FFD700;
             border-radius: 10px;
@@ -72,7 +72,7 @@
         }
 
         button:hover {
-            background-color: #715e0f;
+            background-color: #483D8B;
             box-shadow: 0 0 25px rgba(255, 255, 0, 0.8); /* เปลี่ยนสีแสงเมื่อ hover */
         }
 
@@ -82,6 +82,20 @@
             margin-top: 20px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* แสงรอบภาพไพ่ */
+        }
+
+        /* ปุ่ม "ทำนายอีกครั้ง / Draw Again" */
+        #draw-again-btn {
+            display: none; /* ซ่อนปุ่มทำนายอีกครั้งในตอนแรก */
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #6A5ACD;
+            color: white;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 0 15px rgba(218, 165, 32, 0.7);
         }
 
         /* ภาพ GIF สำหรับการสับไพ่ */
@@ -106,6 +120,9 @@
             <img src="images/card_back.jpg" alt="Card Back">
         </button>
         
+        <!-- ปุ่ม "ทำนายอีกครั้ง" -->
+        <button id="draw-again-btn" onclick="resetPage()">ทำนายอีกครั้ง / Draw Again</button>
+
         <!-- ภาพ GIF สำหรับการสับไพ่ -->
         <img id="shuffling-gif" src="images/shuffling.gif" alt="Shuffling Cards">
 
@@ -145,11 +162,9 @@
             // แสดงรูปไพ่ปิดที่ปุ่มก่อนกด
             const drawButton = document.getElementById('draw-btn');
             const shufflingGif = document.getElementById('shuffling-gif');
-            drawButton.innerHTML = 'Shuffling...';
-            drawButton.disabled = true;
-            
-            // แสดง GIF การสับไพ่
-            shufflingGif.style.display = 'block';
+            const drawAgainButton = document.getElementById('draw-again-btn');
+            drawButton.style.display = 'none'; // ซ่อนปุ่มสุ่มไพ่
+            shufflingGif.style.display = 'block'; // แสดง GIF การสับไพ่
 
             // ตั้งเวลาแสดงไพ่ (เช่น 2 วินาทีหลังจากกดปุ่ม)
             setTimeout(function() {
@@ -162,11 +177,17 @@
                     <img src="${card.img}" alt="${card.name}">
                 `;
 
-                // รีเซ็ตปุ่มกลับไปเป็นปกติ
-                drawButton.innerHTML = `Draw a Card
-                                        <img src="images/card_back.jpg" alt="Card Back">`;
-                drawButton.disabled = false;
+                // แสดงปุ่ม "ทำนายอีกครั้ง / Draw Again"
+                drawAgainButton.style.display = 'block';
             }, 2000); // ตั้งเวลาให้รอ 2 วินาทีเพื่อจำลองการ "Shuffle"
+        }
+
+        function resetPage() {
+            // ซ่อนปุ่ม "ทำนายอีกครั้ง"
+            document.getElementById('draw-again-btn').style.display = 'none';
+            // รีเซ็ตหน้ากลับไปแสดงปุ่ม "Draw a Card"
+            document.getElementById('tarot-card').innerHTML = '';
+            document.getElementById('draw-btn').style.display = 'flex';
         }
 
         // ป้องกันการคลิกขวาบนหน้าเว็บ
