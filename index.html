@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarot Card Randomizer</title>
+    <title>The Magic Tarot </title>
     <style>
         /* จัดให้ทั้งหน้าจออยู่ตรงกลาง */
         body {
@@ -12,7 +12,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh; /* ใช้ความสูงเต็มหน้าจอ */
-            background-color: #f0f0f0;
+            background-color: #ffffff;
             margin: 0; /* เอาขอบเขตของ body ออก */
         }
         /* กล่องเนื้อหา */
@@ -44,7 +44,7 @@
             margin-right: 10px;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #715e0f;
         }
         img {
             width: 200px;
@@ -61,12 +61,13 @@
 
     <!-- กล่องเนื้อหาสำหรับสุ่มไพ่ -->
     <div class="container">
-        <h1>Tarot Card Randomizer</h1>
-        <p>Click the button to draw a random Tarot card.</p>
+        <h1>The Magic Tarot </h1>
+        <p>ตั้งสมาธิและคลิกเพื่อทำนาย / Predict your horoscope.</p>
         
         <!-- ปุ่มสุ่มไพ่มีรูปภาพ -->
         <button id="draw-btn" onclick="drawCard()">
-            <img src="images/card_back.jpg" alt="Card Back"> Draw a Card
+        Draw a Card
+        <img src="images/card_back.jpg" alt="Card Back">
         </button>
         
         <!-- ภาพ GIF สำหรับการสับไพ่ -->
@@ -130,6 +131,10 @@
                 drawButton.disabled = false;
             }, 2000); // ตั้งเวลาให้รอ 2 วินาทีเพื่อจำลองการ "Shuffle"
         }
+        // ป้องกันการคลิกขวาบนหน้าเว็บ
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault(); // ปิดการทำงานของเมนูคลิกขวา
+        });
     </script>
 </body>
 </html>
