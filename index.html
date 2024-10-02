@@ -3,57 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Magic Tarot </title>
+    <title>The Magic Tarot</title>
     <style>
         /* จัดให้ทั้งหน้าจออยู่ตรงกลาง */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Cursive', Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh; /* ใช้ความสูงเต็มหน้าจอ */
-            background-color: #ffffff;
-            margin: 0; /* เอาขอบเขตของ body ออก */
+            background-color: #1d1d1d; /* พื้นหลังสีดำ */
+            color: #f5e1da; /* สีข้อความที่ดูนุ่มนวล */
+            margin: 0;
+            background-image: url('images/stars_background.jpg'); /* เพิ่มพื้นหลังดวงดาว */
+            background-size: cover;
         }
-        /* กล่องเนื้อหา */
+
+        /* กล่องเนื้อหาที่ดูมีมนต์ขลัง */
         .container {
             text-align: center;
-            background-color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.7);
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2); /* เพิ่มแสงเงารอบกล่อง */
+            max-width: 400px;
         }
+
+        h1 {
+            font-size: 2.5em;
+            color: #FFD700; /* สีทอง */
+            text-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #e2d3c5; /* สีข้อความ */
+        }
+
         #tarot-card {
             font-size: 1.5em;
             margin-top: 20px;
         }
+
+        /* ปุ่มสุ่มไพ่ */
         button {
-            padding: 10px 20px;
+            padding: 15px;
             font-size: 1.2em;
-            background-color: #DAA520;
+            background-color: #DAA520; /* สีทอง */
             color: white;
-            border: none;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
             cursor: pointer;
             margin-top: 20px;
             display: flex;
+            flex-direction: column; /* เรียงข้อความด้านบน รูปภาพด้านล่าง */
             align-items: center;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 0 15px rgba(218, 165, 32, 0.7); /* แสงสีทอง */
         }
+
         button img {
             width: 190px;
             height: 315px;
-            margin-right: 10px;
+            margin-top: 10px;
+            border-radius: 10px;
         }
+
         button:hover {
             background-color: #715e0f;
+            box-shadow: 0 0 25px rgba(255, 255, 0, 0.8); /* เปลี่ยนสีแสงเมื่อ hover */
         }
+
         img {
             width: 200px;
             height: auto;
             margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* แสงรอบภาพไพ่ */
         }
+
+        /* ภาพ GIF สำหรับการสับไพ่ */
         #shuffling-gif {
             display: none;
             margin-top: 20px;
+            width: 100px;
         }
     </style>
 </head>
@@ -61,13 +94,13 @@
 
     <!-- กล่องเนื้อหาสำหรับสุ่มไพ่ -->
     <div class="container">
-        <h1>The Magic Tarot </h1>
+        <h1>The Magic Tarot</h1>
         <p>ตั้งสมาธิและคลิกเพื่อทำนาย / Predict your horoscope.</p>
         
         <!-- ปุ่มสุ่มไพ่มีรูปภาพ -->
         <button id="draw-btn" onclick="drawCard()">
-        Draw a Card
-        <img src="images/card_back.jpg" alt="Card Back">
+            Draw a Card
+            <img src="images/card_back.jpg" alt="Card Back">
         </button>
         
         <!-- ภาพ GIF สำหรับการสับไพ่ -->
@@ -83,7 +116,7 @@
             { name: 'The High Priestess', img: 'images/high_priestess.jpg' },
             { name: 'The Empress', img: 'images/empress.jpg' },
             { name: 'The Emperor', img: 'images/emperor.jpg' },
-            { name: 'The Hierophanะ', img: 'images/hierophant.jpg' },
+            { name: 'The Hierophant', img: 'images/hierophant.jpg' },
             { name: 'The Lovers', img: 'images/lovers.jpg' },
             { name: 'The Chariot', img: 'images/chariot.jpg' },
             { name: 'Strength', img: 'images/strength.jpg' },
@@ -127,10 +160,12 @@
                 `;
 
                 // รีเซ็ตปุ่มกลับไปเป็นปกติ
-                drawButton.innerHTML = `<img src="images/card_back.jpg" alt="Card Back"> Draw a Card`;
+                drawButton.innerHTML = `Draw a Card
+                                        <img src="images/card_back.jpg" alt="Card Back">`;
                 drawButton.disabled = false;
             }, 2000); // ตั้งเวลาให้รอ 2 วินาทีเพื่อจำลองการ "Shuffle"
         }
+
         // ป้องกันการคลิกขวาบนหน้าเว็บ
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault(); // ปิดการทำงานของเมนูคลิกขวา
